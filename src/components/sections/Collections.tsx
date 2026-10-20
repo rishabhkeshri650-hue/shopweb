@@ -10,10 +10,10 @@ export function Collections() {
         <div className="flex flex-col gap-8 border-t border-line pt-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <Reveal y={12}>
-              <p className="eyebrow">01 — The collections</p>
+              <p className="eyebrow">02 — The collections</p>
             </Reveal>
             <h2 className="mt-5 max-w-[15ch] font-display text-[clamp(2.2rem,4.6vw,3.9rem)] leading-[1.02] tracking-[-0.03em]">
-              <MaskLine>Six shelves,</MaskLine>
+              <MaskLine>Every shelf,</MaskLine>
               <MaskLine delay={0.08}>
                 <span className="italic text-maroon">one</span> shop.
               </MaskLine>

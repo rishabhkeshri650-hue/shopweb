@@ -48,30 +48,30 @@ export type Collection = {
 export const collections: Collection[] = [
   {
     index: "01",
-    title: "Sarees",
-    kicker: "The six-yard standard",
-    copy: "Silk, cotton, georgette and soft chanderi — chosen for the way they fall, the way colour holds in daylight, and the way a border finishes a drape.",
+    title: "Kids Cloth",
+    kicker: "Small sizes, full racks",
+    copy: "Ready-made sets, frocks, shirts and shorts for boys and girls — cut for the age when everything is outgrown twice a year. Cotton first, because the Saharsa summer is long.",
     image: "./images/col-fabric.jpg",
-    meta: "Silk · Cotton · Georgette · Printed",
-    alt: "Stacks of folded sarees in every colour, floor to ceiling, beside the pink curtain at the back of the shop",
+    meta: "Boys · Girls · Sets · Cotton",
+    alt: "Stacks of folded clothing in every colour, floor to ceiling, on the shelves at Shree Keshri Synthetics",
   },
   {
     index: "02",
-    title: "Readymades & Suits",
-    kicker: "Stitched, finished, ready",
-    copy: "Anarkalis, kurti sets and salwar suits that fit the day you buy them. Cut for real bodies, finished for festival evenings and ordinary Tuesdays alike.",
+    title: "Suitings",
+    kicker: "For the men of the house",
+    copy: "Suiting and shirting by the metre, and the shirts, trousers and jeans that go with them. Choose the bolt and take it to your tailor — or take the finished piece off the shelf.",
     image: "./images/col-readymade.jpg",
-    meta: "Kurtis · Anarkali · Salwar suits",
-    alt: "Readymade suits and kurtis hanging in protective covers along the shop wall",
+    meta: "Suiting · Shirting · Shirts · Trousers",
+    alt: "Bolts of suiting and shirting fabric hanging in protective covers along the shop wall",
   },
   {
     index: "03",
-    title: "Menswear",
-    kicker: "Everyday cotton, occasion ready",
-    copy: "Shirts, t-shirts and denim for the men of the house. Plain weaves for work, prints for the weekend, and denim that survives the district.",
+    title: "Sarees",
+    kicker: "The six-yard standard",
+    copy: "Silk, cotton, georgette and soft chanderi — chosen for the way they fall, the way colour holds in daylight, and the way a border finishes a drape.",
     image: "./images/col-menswear.jpg",
-    meta: "Shirts · T-shirts · Jeans",
-    alt: "Colourful boxed shirts stacked floor to ceiling in the menswear aisle",
+    meta: "Silk · Cotton · Georgette · Printed",
+    alt: "Boxed garments stacked floor to ceiling in the shop aisle, sorted by colour",
   },
 ]
 
@@ -79,11 +79,11 @@ export const alsoInStore = [
   "Dupattas",
   "Blouse pieces",
   "Petticoats",
-  "Leggings",
+  "Readymades",
   "Nightwear",
-  "Kids' wear",
   "School uniforms",
   "Fabric by the metre",
+  "Leggings",
 ]
 
 export const promises = [
@@ -102,7 +102,7 @@ export const promises = [
 ]
 
 export const stats = [
-  { value: "06", label: "Core collections" },
+  { value: "03", label: "Core collections" },
   { value: "01", label: "Roof for the family" },
   { value: "07", label: "Days a week" },
 ]

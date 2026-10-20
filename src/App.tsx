@@ -15,9 +15,9 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
+        <QuoteBand />
         <Ticker />
         <Collections />
-        <QuoteBand />
         <Story />
         <Owner />
         <Visit />

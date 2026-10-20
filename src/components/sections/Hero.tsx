@@ -47,9 +47,9 @@ export function Hero() {
 
           <Reveal delay={1.35} y={18}>
             <p className="mt-7 max-w-[47ch] text-[15.5px] leading-[1.75] text-ink-soft">
-              Sarees, readymades, suits and menswear on High School Road — a family shop where the
-              shelves run floor to ceiling, the colours are sorted by hand, and someone still stands
-              with you until the drape is right.
+              Sarees, suitings, kids’ cloth and menswear on High School Road — a family shop where
+              the shelves run floor to ceiling, the colours are sorted by hand, and someone still
+              stands with you until the fit is right.
             </p>
           </Reveal>
 
@@ -111,7 +111,7 @@ export function Hero() {
                 <p className="max-w-[62%] font-mono text-[9px] uppercase leading-[1.9] tracking-[0.2em] text-paper/85">
                   The saree wall · sorted by hand, restocked weekly
                 </p>
-                <span className="font-display text-[13px] italic text-paper/90">01 / 06</span>
+                <span className="font-display text-[13px] italic text-paper/90">01 / 03</span>
               </div>
             </div>
 

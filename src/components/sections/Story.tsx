@@ -23,7 +23,7 @@ export function Story() {
 
           <div className="lg:col-span-5 lg:pl-2">
             <Reveal y={12}>
-              <p className="eyebrow">03 — Inside the shop</p>
+              <p className="eyebrow">03 — The aisles</p>
             </Reveal>
             <h2 className="mt-5 font-display text-[clamp(2.1rem,4.4vw,3.6rem)] leading-[1.03] tracking-[-0.03em]">
               <MaskLine>Aisles worth</MaskLine>
@@ -48,8 +48,8 @@ export function Story() {
               <dl className="mt-9 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-6">
                 {[
                   ["Sarees", "Silk · cotton · georgette"],
-                  ["Readymades", "Kurtis · suits · sets"],
-                  ["Menswear", "Shirts · tees · denim"],
+                  ["Suitings", "Suiting · shirting · shirts"],
+                  ["Kids cloth", "Sets · frocks · cotton"],
                   ["The rest", "Dupatta · blouse · fabric"],
                 ].map(([k, v]) => (
                   <div key={k}>
