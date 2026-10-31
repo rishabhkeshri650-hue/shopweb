@@ -56,6 +56,10 @@ export interface HalftoneWordmarkFooterProps {
   radius?: number
   /** How much of the word's cap height hangs below the bottom edge, 0–0.6. Defaults to 0.2. */
   crop?: number
+  /** Clear space kept under the wordmark, in CSS px. Defaults to 0. */
+  bottomGap?: number
+  /** Fraction of the width the widest line fills, 0.3–1. Defaults to 0.99. */
+  fitWidth?: number
   /** Print grain over everything, 0–1. Defaults to 0.5. */
   grain?: number
   /** Pointer and click response. Defaults to true. */
@@ -190,6 +194,8 @@ export default function HalftoneWordmarkFooter({
   dotGap = 6,
   radius = 80,
   crop = 0.2,
+  bottomGap = 0,
+  fitWidth = 0.99,
   grain = 0.5,
   interactive = true,
   fontFamily = SANS_STACK,
@@ -201,9 +207,9 @@ export default function HalftoneWordmarkFooter({
   const colors = { ...(PRESETS[preset] || PRESETS.night), ...(palette || {}) }
   const rootRef = React.useRef(null as HTMLElement | null)
   const canvasRef = React.useRef(null as HTMLCanvasElement | null)
-  const opts = React.useRef({ colors, dotGap, radius, crop, grain, interactive, fontFamily, fontWeight, wordmark })
-  opts.current = { colors, dotGap, radius, crop, grain, interactive, fontFamily, fontWeight, wordmark }
-  const key = [wordmark, dotGap, crop, grain, fontFamily, fontWeight, colors.background, colors.ink, colors.warm].join("|")
+  const opts = React.useRef({ colors, dotGap, radius, crop, bottomGap, fitWidth, grain, interactive, fontFamily, fontWeight, wordmark })
+  opts.current = { colors, dotGap, radius, crop, bottomGap, fitWidth, grain, interactive, fontFamily, fontWeight, wordmark }
+  const key = [wordmark, dotGap, crop, bottomGap, fitWidth, grain, fontFamily, fontWeight, colors.background, colors.ink, colors.warm].join("|")
 
   React.useEffect(() => {
     const root = rootRef.current
@@ -244,17 +250,35 @@ export default function HalftoneWordmarkFooter({
       mask.height = h
       const m = mask.getContext("2d", { willReadFrequently: true })
       if (!m) return
-      const face = o.fontWeight + " 100px " + o.fontFamily
-      m.font = face
-      const word = o.wordmark || " "
-      const fit = hwfFitSize(m.measureText(word).width, w * 1.02)
-      m.font = o.fontWeight + " " + fit + "px " + o.fontFamily
-      const box = m.measureText(word)
-      const cap = box.actualBoundingBoxAscent || fit * 0.72
+
+      // A wordmark can be stacked on several lines by splitting on "\n".
+      // Every line shares one size — the widest line sets it — so the block
+      // keeps a single optical scale instead of turning into a poster.
+      const lines = (o.wordmark || " ").split("\n").map((s) => s.trim() || " ")
+      m.font = o.fontWeight + " 100px " + o.fontFamily
+      const at100 = lines.map((line) => m.measureText(line).width)
+      const size = hwfFitSize(Math.max.apply(null, at100), w * (o.fitWidth || 0.99))
+
+      m.font = o.fontWeight + " " + size + "px " + o.fontFamily
+      const boxes = lines.map((line) => m.measureText(line))
+      let cap = 0
+      for (let i = 0; i < boxes.length; i++) {
+        cap = Math.max(cap, boxes[i].actualBoundingBoxAscent || size * 0.72)
+      }
+
+      const lead = size * 0.055
+      const block = lines.length * cap + (lines.length - 1) * lead
       const c = Math.max(0, Math.min(0.6, o.crop))
+      const bottomGap = Math.max(0, o.bottomGap || 0)
+
       m.fillStyle = "#000"
       m.textBaseline = "alphabetic"
-      m.fillText(word, (w - box.width) / 2, h + cap * c)
+      let cursor = h - bottomGap + cap * c - block
+      for (let i = 0; i < lines.length; i++) {
+        const baseline = cursor + cap
+        m.fillText(lines[i], (w - boxes[i].width) / 2, baseline)
+        cursor = baseline + lead
+      }
       const img = m.getImageData(0, 0, w, h).data
 
       const gap = Math.max(3, o.dotGap)
